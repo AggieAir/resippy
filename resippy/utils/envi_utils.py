@@ -334,4 +334,5 @@ class EnviUtils:
                                     ):              # type: (...) -> tuple
         dset = gdal.Open(fname, gdal.GA_ReadOnly)
         geot = dset.GetGeoTransform()
+        dset = None
         return geot
