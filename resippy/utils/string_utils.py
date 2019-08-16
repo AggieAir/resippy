@@ -29,7 +29,7 @@ def remove_newlines(text,   # type: str
 
 
 def convert_to_snake_case(text     # type: str
-                           ):       # type: (...) -> str
+                          ):       # type: (...) -> str
     """
     This is a convenience method that converts a camel case string to snake case.
     :param text: input string
@@ -38,3 +38,8 @@ def convert_to_snake_case(text     # type: str
     s1 = sub('(.)([A-Z][a-z]+)', r'\1_\2', text)
     return sub('([a-z0-9])([A-Z])', r'\1_\2', s1).lower()
 
+
+def remove_repeating_spaces(text,       # type: str,
+                            ):          # type: (...) -> str
+    new_text = sub(' +', ' ', text)
+    return new_text

@@ -1,7 +1,7 @@
 from resippy.test_runner import demo_data_base_dir, demo_data_save_dir
 
 from resippy.utils import file_utils as file_utils
-from resippy.utils import envi_utils
+from resippy.utils.envi_utils import EnviUtils as envi_utils
 from resippy.image_objects.image_factory import ImageFactory
 import os
 

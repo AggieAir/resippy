@@ -1,7 +1,6 @@
 from resippy.test_runner import demo_data_base_dir, demo_data_save_dir
 
 from resippy.utils import file_utils as file_utils
-from resippy.utils import envi_utils
 from resippy.image_objects.image_factory import ImageFactory
 from resippy.spectral.spectrum_factories.spectrum_factory import SpectrumFactory
 import resippy.spectral.spectral_image_processing_2d as sip_2d
@@ -10,9 +9,6 @@ import numpy as np
 import imageio
 import seaborn
 import os
-
-import matplotlib.pyplot as plt
-
 
 reflectance_cube_fname = file_utils.get_path_from_subdirs(demo_data_base_dir, ["image_data",
                                                                             "hyperspectral",

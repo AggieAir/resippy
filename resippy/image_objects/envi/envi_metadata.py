@@ -1,7 +1,8 @@
 from __future__ import division
 
 from resippy.image_objects.abstract_image_metadata import AbstractImageMetadata
-import resippy.utils.envi_utils as envi_utils
+from resippy.utils.envi_utils import EnviUtils as envi_utils
+
 
 class EnviMetadata(AbstractImageMetadata):
     def __init__(self):
