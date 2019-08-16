@@ -1,12 +1,14 @@
 from __future__ import division
 
 from pyproj import transform
+from pyproj import Proj
 from functools import partial
 from shapely.ops import transform as shapely_transform
 import numpy as np
 from numpy import ndarray
 from shapely.geometry.base import BaseGeometry
 from shapely.geometry import Polygon
+import osr
 
 
 import resippy.photogrammetry.crs_defs as crs_defs

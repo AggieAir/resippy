@@ -1,6 +1,9 @@
 from resippy.utils import string_utils
 import numpy as np
 from numpy import ndarray
+from pyproj import Proj
+import gdal
+import resippy.utils.proj_utils as proj_utils
 import os
 
 ENVI_DTYPES_TO_NUMPY = {"1": np.uint8,
@@ -282,9 +285,53 @@ class EnviUtils:
         str_arr = '{' + str_arr + '}'
         return str_arr
 
-
     @classmethod
-    def map_info_to_wkt(cls,
+    def map_info_to_geot_and_proj(cls,
                         envi_map_info_string,       # type: str
                         ):                          # type: (...) -> str
-        stop = 1
+        """
+
+        :param envi_map_info_string:
+        :return:
+        """
+        # remove brackets if we need to
+        if envi_map_info_string[0] == '{':
+            envi_map_info_string = envi_map_info_string[1:-1]
+        envi_map_info_list = str.split(envi_map_info_string, ",")
+
+        projection_name = envi_map_info_list[0]
+        reference_pixel_x_tie_point = envi_map_info_list[1]
+        reference_pixel_y_tie_point = envi_map_info_list[2]
+        pixel_easting = envi_map_info_list[3]
+        pixel_northing = envi_map_info_list[4]
+        x_pixel_size = envi_map_info_list[5]
+        y_pixel_size = envi_map_info_list[6]
+        projection_zone = envi_map_info_list[7]
+        north_or_south = envi_map_info_list[8]
+        datum = envi_map_info_list[9]
+        units = envi_map_info_list[10]
+
+    @classmethod
+    def get_proj_wkt_from_fname(cls,
+                            fname,          # type: str
+                            ):              # type: (...) -> str
+        dset = gdal.Open(fname, gdal.GA_ReadOnly)
+        proj_wkt = dset.GetProjection()
+        dset = None
+        return proj_wkt
+
+    @classmethod
+    def get_proj_from_fname(cls,
+                            fname,          # type: str
+                            ):              # type: (...) -> Proj
+        wkt = cls.get_proj_wkt_from_fname(fname)
+        proj = proj_utils.wkt_to_proj(wkt)
+        return proj
+
+    @classmethod
+    def get_geotransform_from_fname(cls,
+                                    fname,          # type: str
+                                    ):              # type: (...) -> tuple
+        dset = gdal.Open(fname, gdal.GA_ReadOnly)
+        geot = dset.GetGeoTransform()
+        return geot

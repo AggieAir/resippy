@@ -45,6 +45,13 @@ class TestChipper(unittest.TestCase):
 
         print("Header fields after reading, writing and reading back in passed.")
 
+    def test_map_info(self):
+        test_dir = os.path.join(BASE_TEST_DIR, "test_read_write")
+        test_fname = os.path.join(test_dir, "blind_test_rad.hdr")
+        header = EnviUtils.read_envi_header(test_fname)
+        map_info_string = header['map info']
+        EnviUtils.map_info_to_wkt(map_info_string)
+
 
 if __name__ == '__main__':
     unittest.main()
