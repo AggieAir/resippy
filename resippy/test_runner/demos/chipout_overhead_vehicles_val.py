@@ -98,7 +98,7 @@ def create_vehicle_training_chips():
     file_utils.make_dir_if_not_exists(not_vehicles_save_dir)
 
     # create filenames for vehicles and non-vehicles based on original center locations.  This will let us
-    # look through our chips for false positives and remove them from the masks
+    # look through our chips for false positives and remove them from the image_masks
     vehicle_chips_fnames_list = ["vehicle_center_y_" + str(vehicle_locs_y[i]) + "_center_x_" + str(vehicle_locs_x[i]) for i in range(len(vehicle_locs_x))]
     not_vehicle_chips_fnames_list = ["not_vehicle_center_y_" + str(not_vehicle_locs_y[i]) + "_center_x_" + str(not_vehicle_locs_x[i]) for i in range(len(not_vehicle_locs_x))]
 

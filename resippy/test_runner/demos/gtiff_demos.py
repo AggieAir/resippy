@@ -38,7 +38,7 @@ def gtiff_dsm_image_object_save():
     gtiff_image_object = ImageFactory.geotiff.from_file(gtiff_full_path)
     save_fname = "gtiff_dsm_write_to_disk.tif"
     save_fullpath = os.path.join(save_dir, save_fname)
-    gtiff_image_object.write_to_disk(save_fullpath)
+    gtiff_image_object.write_to_h5_file(save_fullpath)
     print("geotiff written to: " + save_fullpath)
 
 
@@ -56,7 +56,7 @@ def gtiff_dsm_read_then_create_from_numpy_array():
                                                              gtiff_image_object.get_point_calculator().get_geot(),
                                                              gtiff_image_object.get_point_calculator().get_projection(),
                                                              gtiff_image_object.get_metadata().get_nodata_val())
-    gtiff_from_numpy.write_to_disk(numpy_save_fullpath)
+    gtiff_from_numpy.write_to_h5_file(numpy_save_fullpath)
     numpy_saved_image = ImageFactory.geotiff.from_file(numpy_save_fullpath)
     data = numpy_saved_image.read_all_image_data_from_disk()
     val_to_add = 10
@@ -65,7 +65,7 @@ def gtiff_dsm_read_then_create_from_numpy_array():
     numpy_save_fullpath = os.path.join(save_dir, save_fname)
     gtiff_from_numpy.set_image_data(data)
     gtiff_from_numpy.get_metadata().set_nodata_val(gtiff_image_object.get_metadata().get_nodata_val() + val_to_add)
-    gtiff_from_numpy.write_to_disk(numpy_save_fullpath)
+    gtiff_from_numpy.write_to_h5_file(numpy_save_fullpath)
     print("geotiff written to: " + numpy_save_fullpath)
 
 

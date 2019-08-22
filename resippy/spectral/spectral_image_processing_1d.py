@@ -78,7 +78,7 @@ def ace(spectral_image,             # type: ndarray
     where n is the number of spectral bands
     :param spectral_mean: optional spectral mean, as an n dimensional numpy array
     :param inverse_covariance: optional inverse covariance, as a [n x n] numpy array
-    :param image_mask: optional image mask, which will be used to mask out pixels while computing the spectral mean
+    :param image_mask: optional image image_masks, which will be used to image_masks out pixels while computing the spectral mean
     and spectral covariance, if they are not provided as inputs
     :return: numpy array of size m, where m is the number of samples.
 

@@ -34,7 +34,7 @@ class TestGeotiffImages(unittest.TestCase):
         for datatype in datatypes:
             image_data = image_utils.create_uniform_image_data(npix_x, npix_y, nbands, dtype=datatype)
             gtiff_image = ImageFactory.geotiff.from_numpy_array(image_data, geot, crs_defs.PROJ_4326)
-            gtiff_image.write_to_disk(output_fname)
+            gtiff_image.write_to_h5_file(output_fname)
             gtiff_image_from_file = ImageFactory.geotiff.from_file(output_fname)
             gdal_dtype = gdal_array.NumericTypeCodeToGDALTypeCode(datatype)
 
@@ -50,7 +50,7 @@ class TestGeotiffImages(unittest.TestCase):
         image_data = image_utils.create_uniform_image_data(npix_x, npix_y, nbands)
         gtiff_image = ImageFactory.geotiff.from_numpy_array(image_data, geot, crs_defs.PROJ_4326)
         gtiff_data = gtiff_image.get_image_data()
-        gtiff_image.write_to_disk(output_fname)
+        gtiff_image.write_to_h5_file(output_fname)
         gtiff_image_from_file = ImageFactory.geotiff.from_file(output_fname)
 
         # set the fields that are expected to be missing from the memory-generated gtiff
